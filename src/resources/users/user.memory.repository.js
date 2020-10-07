@@ -1,7 +1,12 @@
 const DB = require('../../common/dataBase');
 
-const getAll = async () => {
-  return DB;
+const getAll = async () => DB;
+
+const getById = async id => DB.filter(item => item.id === id)[0];
+
+const create = async user => {
+  DB.push(user);
+  return getById(user.id);
 };
 
-module.exports = { getAll };
+module.exports = { getAll, getById, create };
