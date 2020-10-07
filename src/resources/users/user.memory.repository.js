@@ -1,6 +1,7 @@
+const DB = require('../../common/dataBase');
+
 const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+  return DB;
 };
 
 module.exports = { getAll };
