@@ -5,7 +5,7 @@ const DB = {
 };
 const getAllUsers = async () => [...DB.users];
 
-const getUser = async id => DB.users.filter(item => item.id === id)[0];
+const getUser = async id => DB.users.find(item => item.id === id);
 
 const createUser = async user => {
   DB.users.push(user);
@@ -13,7 +13,7 @@ const createUser = async user => {
 };
 
 const updateUser = async (id, user) => {
-  const userFilter = DB.users.filter(item => item.id === id)[0];
+  const userFilter = DB.users.find(item => item.id === id);
   const idxUser = DB.users.indexOf(userFilter);
   const keys = Object.keys(user);
   keys.forEach(key => {
@@ -23,15 +23,29 @@ const updateUser = async (id, user) => {
 };
 
 const deletedUser = async id => {
-  const user = DB.users.filter(item => item.id === id)[0];
+  const user = DB.users.find(item => item.id === id);
   const idxUser = DB.users.indexOf(user);
-  DB.tasks.filter(el => el.userId === id).forEach(el => (el.userId = null));
+  DB.tasks = DB.tasks.map(task => {
+    if (task.userId === id) {
+      return {
+        ...task,
+        userId: null
+      };
+    }
+    return task;
+  });
   return DB.users.splice(idxUser, 1);
 };
 
 const getAllBoards = async () => [...DB.boards];
 
-const getBoard = async id => DB.boards.filter(item => item.id === id)[0];
+const getBoard = async id => {
+  const board = DB.boards.find(item => item.id === id);
+  if (board === undefined) {
+    throw new Error('Not found');
+  }
+  return board;
+};
 
 const createBoard = async board => {
   DB.boards.push(board);
@@ -39,7 +53,7 @@ const createBoard = async board => {
 };
 
 const updateBoard = async (id, board) => {
-  const filter = DB.boards.filter(item => item.id === id)[0];
+  const filter = DB.boards.find(item => item.id === id);
   const idx = DB.users.indexOf(filter);
   const keys = Object.keys(board);
   keys.forEach(key => {
@@ -48,39 +62,31 @@ const updateBoard = async (id, board) => {
   return (DB.users[idx] = filter);
 };
 
-const deletedTask = async (idBoard, idTask) => {
-  const idxTask = DB.tasks.findIndex(
-    item => item.id === idTask && item.boardId === idBoard
-  );
-
-  if (idxTask >= 0) {
-    return DB.tasks.splice(idxTask, 1);
-  }
-  return false;
-};
-
 const deleteTasksInBoard = async idBoard => {
-  let foundIdx = DB.tasks.findIndex(el => el.boardId === idBoard);
-  while (foundIdx > -1) {
-    DB.tasks.splice(foundIdx, 1);
-    foundIdx = DB.tasks.findIndex(el => el.boardId === idBoard);
+  let idx = DB.tasks.findIndex(item => item.boardId === idBoard);
+  while (idx > -1) {
+    DB.tasks.splice(idx, 1);
+    idx = DB.tasks.findIndex(item => item.boardId === idBoard);
   }
 };
 
 const deletedBoard = async id => {
-  const idxBoard = DB.boards.findIndex(item => item.id === id);
-  if (idxBoard >= 0) {
-    await deleteTasksInBoard(id);
-    return DB.boards.splice(idxBoard, 1);
+  const boardIndex = DB.boards.findIndex(board => board.id === id);
+  deleteTasksInBoard(id);
+  if (boardIndex === -1) {
+    throw new Error("Thsi board doesn't exists");
   }
-
-  return false;
+  DB.boards = DB.boards.filter(board => board.id !== id);
 };
 
 const getAllTasks = async () => [...DB.tasks];
 
 const getTask = async (idBoard, idTask) => {
-  return DB.tasks.find(i => i.id === idTask && i.boardId === idBoard);
+  const task = DB.tasks.find(i => i.id === idTask && i.boardId === idBoard);
+  if (task === undefined) {
+    throw new Error('Not find');
+  }
+  return task;
 };
 
 const createTask = async task => {
@@ -89,13 +95,23 @@ const createTask = async task => {
 };
 
 const updateTask = async (id, task) => {
-  const filter = DB.tasks.filter(i => i.id === id)[0];
+  const filter = DB.tasks.find(i => i.id === id);
   const idx = DB.tasks.indexOf(filter);
   const keys = Object.keys(task);
   keys.forEach(key => {
     filter[key] = task[key];
   });
   return (DB.tasks[idx] = filter);
+};
+
+const deletedTask = async (idBoard, idTask) => {
+  const taskIndex = DB.tasks.findIndex(
+    task => task.id === idTask && task.boardId === idBoard
+  );
+  if (taskIndex === -1) {
+    throw new Error("Thsi board doesn't exists");
+  }
+  DB.tasks = DB.tasks.filter(task => task.id !== idTask);
 };
 
 module.exports = {

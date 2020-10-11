@@ -2,7 +2,13 @@ const DB = require('../../common/dataBase');
 
 const getAll = async () => DB.getAllTasks();
 
-const getById = async (idBoard, idTask) => DB.getTask(idBoard, idTask);
+const getById = async (idBoard, idTask) => {
+  const task = DB.getTask(idBoard, idTask);
+  if (!task) {
+    throw new Error(`The task with id: ${idTask} not found`);
+  }
+  return task;
+};
 
 const create = async task => DB.createTask(task);
 
