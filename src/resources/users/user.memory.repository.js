@@ -2,7 +2,13 @@ const DB = require('../../common/dataBase');
 
 const getAll = async () => DB.getAllUsers();
 
-const getById = async id => DB.getUser(id);
+const getById = async id => {
+  const user = DB.getUser(id);
+  if (!user) {
+    throw new Error(`The user with id: ${id} not found`);
+  }
+  return user;
+};
 
 const create = async user => DB.createUser(user);
 

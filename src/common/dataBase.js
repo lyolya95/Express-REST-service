@@ -1,6 +1,7 @@
 const DB = {
   users: [],
-  boards: []
+  boards: [],
+  tasks: []
 };
 const getAllUsers = async () => [...DB.users];
 
@@ -52,6 +53,33 @@ const deletedBoard = async id => {
   return DB.boards.splice(idx, 1);
 };
 
+const getAllTasks = async () => [...DB.tasks];
+
+const getTask = async (idBoard, idTask) => {
+  return DB.tasks.filter(i => i.id === idTask)[0];
+};
+
+const createTask = async task => {
+  DB.tasks.push(task);
+  return getTask(task.boardId, task.id);
+};
+
+const updateTask = async (id, task) => {
+  const filter = DB.tasks.filter(i => i.id === id)[0];
+  const idx = DB.tasks.indexOf(filter);
+  const keys = Object.keys(task);
+  keys.forEach(key => {
+    filter[key] = task[key];
+  });
+  return (DB.tasks[idx] = filter);
+};
+
+const deletedTask = async id => {
+  const task = DB.tasks.filter(item => item.id === id)[0];
+  const idx = DB.tasks.indexOf(task);
+  return DB.tasks.splice(idx, 1);
+};
+
 module.exports = {
   getAllUsers,
   getUser,
@@ -62,5 +90,10 @@ module.exports = {
   getBoard,
   createBoard,
   updateBoard,
-  deletedBoard
+  deletedBoard,
+  getAllTasks,
+  getTask,
+  createTask,
+  updateTask,
+  deletedTask
 };
