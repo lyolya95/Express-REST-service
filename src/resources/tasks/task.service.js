@@ -2,18 +2,12 @@ const tasksRepo = require('./task.memory.repository');
 
 const getAll = () => tasksRepo.getAll();
 
-const getById = (idBoard, idTask) => {
-  const task = tasksRepo.getById(idBoard, idTask);
-  if (!task) {
-    throw new Error(`The task with id: ${idTask} not found`);
-  }
-  return task;
-};
+const getById = (idBoard, idTask) => tasksRepo.getById(idBoard, idTask);
 
 const create = task => tasksRepo.create(task);
 
 const update = (id, user) => tasksRepo.update(id, user);
 
-const deleted = id => tasksRepo.deleted(id);
+const deleted = (idBoard, idTask) => tasksRepo.deleted(idBoard, idTask);
 
 module.exports = { getAll, getById, create, update, deleted };

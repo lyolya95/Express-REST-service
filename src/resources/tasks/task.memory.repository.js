@@ -8,6 +8,6 @@ const create = async task => DB.createTask(task);
 
 const update = async (id, task) => DB.updateTask(id, task);
 
-const deleted = async id => DB.deletedTask(id);
+const deleted = async (idBoard, idTask) => DB.deletedTask(idBoard, idTask);
 
 module.exports = { getAll, getById, create, update, deleted };

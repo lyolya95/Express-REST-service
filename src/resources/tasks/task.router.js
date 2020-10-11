@@ -3,13 +3,19 @@ const Task = require('./task.model');
 const tasksService = require('./task.service');
 
 router.route('/').get(async (req, res) => {
-  const tasks = await tasksService.getAll();
-  res.json(tasks.map(Task.toResponse));
+  try {
+    res.json(await tasksService.getAll());
+  } catch (err) {
+    res.status(404).send('Task not found');
+  }
 });
 
 router.route('/:id').get(async (req, res) => {
-  const task = await tasksService.getById(req.params.boardId, req.params.id);
-  res.json(Task.toResponse(task));
+  try {
+    res.json(await tasksService.getById(req.params.boardId, req.params.id));
+  } catch (err) {
+    res.status(404).send('Task not found');
+  }
 });
 
 router.route('/').post(async (req, res) => {
@@ -23,7 +29,7 @@ router.route('/').post(async (req, res) => {
       columnId: req.body.columnId
     })
   );
-  res.json(Task.toResponse(task));
+  res.json(task);
 });
 
 router.route('/:id').put(async (req, res) => {
@@ -39,13 +45,16 @@ router.route('/:id').put(async (req, res) => {
       columnId: req.body.columnId
     })
   );
-  res.json(Task.toResponse(task));
+  res.json(task);
 });
 
 router.route('/:id').delete(async (req, res) => {
-  await tasksService.deleted(req.params.id);
-  const tasks = await tasksService.getAll();
-  res.json(tasks.map(Task.toResponse));
+  try {
+    await tasksService.deleted(req.params.boardId, req.params.id);
+    res.status(200).send('OK');
+  } catch (err) {
+    res.status(404).send('Not found');
+  }
 });
 
 module.exports = router;

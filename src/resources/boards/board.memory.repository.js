@@ -14,12 +14,6 @@ const create = async board => DB.createBoard(board);
 
 const update = async (id, board) => DB.updateBoard(id, board);
 
-const deleted = async id => {
-  const board = DB.deletedBoard(id);
-  if (!board) {
-    throw new Error(`The board with id: ${id} not found`);
-  }
-  return board;
-};
+const deleted = async id => DB.deletedBoard(id);
 
 module.exports = { getAll, getById, create, update, deleted };
