@@ -52,6 +52,7 @@ const deletedTask = async (idBoard, idTask) => {
   const idxTask = DB.tasks.findIndex(
     item => item.id === idTask && item.boardId === idBoard
   );
+
   if (idxTask >= 0) {
     return DB.tasks.splice(idxTask, 1);
   }

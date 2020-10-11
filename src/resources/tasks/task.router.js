@@ -50,8 +50,9 @@ router.route('/:id').put(async (req, res) => {
 
 router.route('/:id').delete(async (req, res) => {
   try {
-    await tasksService.deleted(req.params.boardId, req.params.id);
-    res.status(200).send('OK');
+    res
+      .status(200)
+      .json(await tasksService.deleted(req.params.boardId, req.params.id));
   } catch (err) {
     res.status(404).send('Not found');
   }
