@@ -13,13 +13,13 @@ const createUser = async user => {
 };
 
 const updateUser = async (id, user) => {
-  const userFilter = DB.users.find(item => item.id === id);
-  const idxUser = DB.users.indexOf(userFilter);
+  const userSelect = DB.users.find(item => item.id === id);
+  const idxUser = DB.users.indexOf(userSelect);
   const keys = Object.keys(user);
   keys.forEach(key => {
-    userFilter[key] = user[key];
+    userSelect[key] = user[key];
   });
-  return (DB.users[idxUser] = userFilter);
+  return (DB.users[idxUser] = userSelect);
 };
 
 const deletedUser = async id => {
@@ -42,7 +42,7 @@ const getAllBoards = async () => [...DB.boards];
 const getBoard = async id => {
   const board = DB.boards.find(item => item.id === id);
   if (board === undefined) {
-    throw new Error('Not found');
+    throw new Error(`The board with id: ${id} not found`);
   }
   return board;
 };
@@ -74,7 +74,7 @@ const deletedBoard = async id => {
   const boardIndex = DB.boards.findIndex(board => board.id === id);
   deleteTasksInBoard(id);
   if (boardIndex === -1) {
-    throw new Error("Thsi board doesn't exists");
+    throw new Error(`The board with id: ${id} not found`);
   }
   DB.boards = DB.boards.filter(board => board.id !== id);
 };
@@ -84,7 +84,7 @@ const getAllTasks = async () => [...DB.tasks];
 const getTask = async (idBoard, idTask) => {
   const task = DB.tasks.find(i => i.id === idTask && i.boardId === idBoard);
   if (task === undefined) {
-    throw new Error('Not find');
+    throw new Error(`The task with id: ${idTask} not found`);
   }
   return task;
 };
@@ -109,7 +109,7 @@ const deletedTask = async (idBoard, idTask) => {
     task => task.id === idTask && task.boardId === idBoard
   );
   if (taskIndex === -1) {
-    throw new Error("Thsi board doesn't exists");
+    throw new Error(`The task with id: ${idTask} not found`);
   }
   DB.tasks = DB.tasks.filter(task => task.id !== idTask);
 };
