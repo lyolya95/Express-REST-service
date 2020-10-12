@@ -1,6 +1,19 @@
-const getAll = async () => {
-  // TODO: mock implementation. should be replaced during task development
-  return [];
+const DB = require('../../common/dataBase');
+
+const getAll = async () => DB.getAllUsers();
+
+const getById = async id => {
+  const user = DB.getUser(id);
+  if (!user) {
+    throw new Error(`The user with id: ${id} not found`);
+  }
+  return user;
 };
 
-module.exports = { getAll };
+const create = async user => DB.createUser(user);
+
+const update = async (id, user) => DB.updateUser(id, user);
+
+const deleted = async id => DB.deletedUser(id);
+
+module.exports = { getAll, getById, create, update, deleted };
