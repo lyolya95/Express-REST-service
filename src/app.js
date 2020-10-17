@@ -8,7 +8,6 @@ const taskRouter = require('./resources/tasks/task.router');
 const { INTERNAL_SERVER_ERROR, getStatusText } = require('http-status-codes');
 const morgan = require('morgan');
 const winston = require('./config/winston');
-const fs = require('fs');
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -16,6 +15,16 @@ const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
 app.use(express.json());
 
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+
+process.on('uncaughtException', error => {
+  winston.error(`captured error: ${error.message}`);
+  // eslint-disable-next-line no-process-exit
+  process.exit(1);
+});
+
+process.on('unhandledRejection', reason => {
+  winston.error(`unhandled rejection detected: ${reason.message}`);
+});
 
 morgan.token('body', res => {
   const { body, params } = res;
@@ -45,25 +54,9 @@ boardRouter.use('/:boardId/tasks', taskRouter);
 
 app.use((err, req, res, next) => {
   winston.error(getStatusText(INTERNAL_SERVER_ERROR));
+  // eslint-disable-next-line
   res.status(INTERNAL_SERVER_ERROR).send(getStatusText(INTERNAL_SERVER_ERROR));
   next();
-});
-
-const globalState = {};
-
-process.on('uncaughtException', error => {
-  // eslint-disable-next-line no-sync
-  fs.writeFileSync(
-    `${__dirname}/logs/uncaughtException-%DATE%.log`,
-    JSON.stringify(globalState)
-  );
-  console.error(`captured error: ${error.message}`);
-  // eslint-disable-next-line no-process-exit
-  process.exit(1);
-});
-
-process.on('unhandledRejection', reason => {
-  console.error(`unhandled rejection detected: ${reason.message}`);
 });
 
 module.exports = app;
