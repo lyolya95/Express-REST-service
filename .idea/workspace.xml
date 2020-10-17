@@ -20,26 +20,19 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:task3" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80424d76-61c8-4f75-bd84-ee79dc3981c4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Express-REST-service.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_10_2020,_08_59_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_17_10_2020__08_59__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/winston.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/logs/access.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/winston.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/winston.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logs/access.log" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +55,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ix5qM7QsTrXdGvRZlSSHbXdktC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -81,7 +78,18 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="winston.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/config/winston.js" working-dir="$PROJECT_DIR$/src/config">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.winston.js" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -91,12 +99,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1602836594261</updated>
-      <workItem from="1602836598118" duration="5846000" />
+      <workItem from="1602836598118" duration="19606000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -104,16 +123,23 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="LONG_EDGES_VISIBLE" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="task3" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
                 </map>
+              </option>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="REGEX" value="true" />
+                  <option name="MATCH_CASE" value="true" />
+                </TextFilterSettings>
               </option>
             </State>
           </value>
@@ -121,14 +147,101 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="861" y="393" key="#ESLint" timestamp="1602912249838">
       <screen x="0" y="23" width="1680" height="945" />
     </state>
     <state x="861" y="393" key="#ESLint/0.23.1680.945@0.23.1680.945" timestamp="1602912249838" />
+    <state x="477" y="181" key="#Inspections" timestamp="1602942702064">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="477" y="181" key="#Inspections/0.23.1680.945@0.23.1680.945" timestamp="1602942702064" />
+    <state x="503" y="304" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1602937769703">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="503" y="304" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.945@0.23.1680.945" timestamp="1602937769703" />
+    <state x="100" y="123" width="1480" height="745" key="DiffContextDialog" timestamp="1602941526947">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="100" y="123" width="1480" height="745" key="DiffContextDialog/0.23.1680.945@0.23.1680.945" timestamp="1602941526947" />
+    <state width="1659" height="253" key="GridCell.Tab.0.bottom" timestamp="1602933960008">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="253" key="GridCell.Tab.0.bottom/0.23.1680.945@0.23.1680.945" timestamp="1602933960008" />
+    <state width="1659" height="253" key="GridCell.Tab.0.center" timestamp="1602933960007">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="253" key="GridCell.Tab.0.center/0.23.1680.945@0.23.1680.945" timestamp="1602933960007" />
+    <state width="1659" height="253" key="GridCell.Tab.0.left" timestamp="1602933960007">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="253" key="GridCell.Tab.0.left/0.23.1680.945@0.23.1680.945" timestamp="1602933960007" />
+    <state width="1659" height="253" key="GridCell.Tab.0.right" timestamp="1602933960008">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="253" key="GridCell.Tab.0.right/0.23.1680.945@0.23.1680.945" timestamp="1602933960008" />
+    <state width="1659" height="313" key="GridCell.Tab.1.bottom" timestamp="1602933953215">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.1.bottom/0.23.1680.945@0.23.1680.945" timestamp="1602933953215" />
+    <state width="1659" height="313" key="GridCell.Tab.1.center" timestamp="1602933953213">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.1.center/0.23.1680.945@0.23.1680.945" timestamp="1602933953213" />
+    <state width="1659" height="313" key="GridCell.Tab.1.left" timestamp="1602933953213">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.1.left/0.23.1680.945@0.23.1680.945" timestamp="1602933953213" />
+    <state width="1659" height="313" key="GridCell.Tab.1.right" timestamp="1602933953215">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.1.right/0.23.1680.945@0.23.1680.945" timestamp="1602933953215" />
+    <state width="1659" height="313" key="GridCell.Tab.2.bottom" timestamp="1602933953217">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.2.bottom/0.23.1680.945@0.23.1680.945" timestamp="1602933953217" />
+    <state width="1659" height="313" key="GridCell.Tab.2.center" timestamp="1602933953216">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.2.center/0.23.1680.945@0.23.1680.945" timestamp="1602933953216" />
+    <state width="1659" height="313" key="GridCell.Tab.2.left" timestamp="1602933953216">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.2.left/0.23.1680.945@0.23.1680.945" timestamp="1602933953216" />
+    <state width="1659" height="313" key="GridCell.Tab.2.right" timestamp="1602933953217">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.2.right/0.23.1680.945@0.23.1680.945" timestamp="1602933953217" />
+    <state width="1659" height="313" key="GridCell.Tab.3.bottom" timestamp="1602933953219">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.3.bottom/0.23.1680.945@0.23.1680.945" timestamp="1602933953219" />
+    <state width="1659" height="313" key="GridCell.Tab.3.center" timestamp="1602933953218">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.3.center/0.23.1680.945@0.23.1680.945" timestamp="1602933953218" />
+    <state width="1659" height="313" key="GridCell.Tab.3.left" timestamp="1602933953217">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.3.left/0.23.1680.945@0.23.1680.945" timestamp="1602933953217" />
+    <state width="1659" height="313" key="GridCell.Tab.3.right" timestamp="1602933953218">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state width="1659" height="313" key="GridCell.Tab.3.right/0.23.1680.945@0.23.1680.945" timestamp="1602933953218" />
+    <state x="341" y="134" key="SettingsEditor" timestamp="1602942062221">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="341" y="134" key="SettingsEditor/0.23.1680.945@0.23.1680.945" timestamp="1602942062221" />
     <state x="722" y="213" key="git4idea.branch.GitSmartOperationDialog" timestamp="1602910746439">
       <screen x="0" y="23" width="1680" height="945" />
     </state>
     <state x="722" y="213" key="git4idea.branch.GitSmartOperationDialog/0.23.1680.945@0.23.1680.945" timestamp="1602910746439" />
+    <state x="505" y="228" key="run.anything.popup" timestamp="1602940904149">
+      <screen x="0" y="23" width="1680" height="945" />
+    </state>
+    <state x="505" y="228" key="run.anything.popup/0.23.1680.945@0.23.1680.945" timestamp="1602940904149" />
   </component>
 </project>
