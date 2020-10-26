@@ -11,7 +11,6 @@ const getById = async id => {
   if (!user) {
     throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
   }
-
   return user;
 };
 

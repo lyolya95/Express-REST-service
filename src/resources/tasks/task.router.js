@@ -8,13 +8,17 @@ router.route('/').get(async (req, res) => {
 });
 
 router.route('/:id').get(async (req, res) => {
-  const task = await tasksService.getById(req.params.boardId, req.params.id);
+  const task = await tasksService.getById(req.params.id);
   res.json(Task.toResponse(task));
 });
 
 router.route('/').post(async (req, res) => {
-  const { boardId } = req.params;
-  const task = await tasksService.create(new Task({ ...req.body, boardId }));
+  const task = await tasksService.create(
+    new Task({
+      ...req.body,
+      boardId: req.params.boardId
+    })
+  );
   res.json(Task.toResponse(task));
 });
 
@@ -24,7 +28,6 @@ router.route('/:id').put(async (req, res) => {
     req.params.id,
     req.body
   );
-  console.log(task);
   res.json(Task.toResponse(task));
 });
 

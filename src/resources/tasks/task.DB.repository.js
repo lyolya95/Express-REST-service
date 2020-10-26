@@ -2,16 +2,21 @@ const Task = require('./task.model');
 const { NOT_FOUND_ERROR } = require('../../errors/appErrors');
 const ENTITY_NAME = 'task';
 
-const getAll = async id => Task.find({ boardId: id });
+const getAll = async boardId => {
+  const tasks = await Task.find({ boardId });
 
-const getById = async (idBoard, idTask) => {
-  const task = await Task.find({ id: idTask, boardId: idBoard });
-  console.log(task);
+  if (!tasks[0]) {
+    throw new NOT_FOUND_ERROR(ENTITY_NAME, { boardId });
+  }
+  return tasks;
+};
+
+const getById = async id => {
+  const task = await Task.findById(id);
 
   if (!task) {
-    throw new NOT_FOUND_ERROR(ENTITY_NAME, { idTask });
+    throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
   }
-
   return task;
 };
 
@@ -27,11 +32,11 @@ const update = async (boardId, id, task) => {
   return updateTask;
 };
 
-const deleted = async (idBoard, idTask) => {
-  const task = await Task.deleteOne({ _id: idTask, boardId: idBoard });
+const deleted = async (boardId, id) => {
+  const task = await Task.deleteOne({ boardId, _id: id });
 
   if (!task) {
-    throw new NOT_FOUND_ERROR(ENTITY_NAME, { idTask });
+    throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
   }
 
   return task;
