@@ -3,39 +3,39 @@ const DB = {
   boards: [],
   tasks: []
 };
-const getAllUsers = async () => [...DB.users];
+// const getAllUsers = async () => [...DB.users];
 
-const getUser = async id => DB.users.find(item => item.id === id);
+// const getUser = async id => DB.users.find(item => item.id === id);
 
-const createUser = async user => {
-  DB.users.push(user);
-  return getUser(user.id);
-};
+// const createUser = async user => {
+//   DB.users.push(user);
+//   return getUser(user.id);
+// };
 
-const updateUser = async (id, user) => {
-  const userSelect = DB.users.find(item => item.id === id);
-  const idxUser = DB.users.indexOf(userSelect);
-  const keys = Object.keys(user);
-  keys.forEach(key => {
-    userSelect[key] = user[key];
-  });
-  return (DB.users[idxUser] = userSelect);
-};
+// const updateUser = async (id, user) => {
+//   const userSelect = DB.users.find(item => item.id === id);
+//   const idxUser = DB.users.indexOf(userSelect);
+//   const keys = Object.keys(user);
+//   keys.forEach(key => {
+//     userSelect[key] = user[key];
+//   });
+//   return (DB.users[idxUser] = userSelect);
+// };
 
-const deletedUser = async id => {
-  const user = DB.users.find(item => item.id === id);
-  const idxUser = DB.users.indexOf(user);
-  DB.tasks = DB.tasks.map(task => {
-    if (task.userId === id) {
-      return {
-        ...task,
-        userId: null
-      };
-    }
-    return task;
-  });
-  return DB.users.splice(idxUser, 1);
-};
+// const deletedUser = async id => {
+//   const user = DB.users.find(item => item.id === id);
+//   const idxUser = DB.users.indexOf(user);
+//   DB.tasks = DB.tasks.map(task => {
+//     if (task.userId === id) {
+//       return {
+//         ...task,
+//         userId: null
+//       };
+//     }
+//     return task;
+//   });
+//   return DB.users.splice(idxUser, 1);
+// };
 
 const getAllBoards = async () => [...DB.boards];
 
@@ -115,11 +115,11 @@ const deletedTask = async (idBoard, idTask) => {
 };
 
 module.exports = {
-  getAllUsers,
-  getUser,
-  createUser,
-  deletedUser,
-  updateUser,
+  // getAllUsers,
+  // getUser,
+  // createUser,
+  // deletedUser,
+  // updateUser,
   getAllBoards,
   getBoard,
   createBoard,

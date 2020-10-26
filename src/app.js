@@ -1,13 +1,16 @@
+const { NOT_FOUND } = require('http-status-codes');
+
 const express = require('express');
 const swaggerUI = require('swagger-ui-express');
 const path = require('path');
+const { createError } = require('http-errors');
 const YAML = require('yamljs');
 const userRouter = require('./resources/users/user.router');
 const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
-const { INTERNAL_SERVER_ERROR, getStatusText } = require('http-status-codes');
 const morgan = require('morgan');
 const winston = require('./config/winston');
+const errorHandler = require('./errors/errorHandler');
 
 const app = express();
 const swaggerDocument = YAML.load(path.join(__dirname, '../doc/api.yaml'));
@@ -27,9 +30,9 @@ process.on('unhandledRejection', reason => {
 });
 
 morgan.token('body', res => {
-  const { body, params } = res;
+  const { body, query } = res;
   return `BODY: ${JSON.stringify(body)}, QUERY PARAMETERS: ${JSON.stringify(
-    params
+    query
   )}`;
 });
 
@@ -52,11 +55,8 @@ app.use('/users', userRouter);
 app.use('/boards', boardRouter);
 boardRouter.use('/:boardId/tasks', taskRouter);
 
-app.use((err, req, res, next) => {
-  winston.error(getStatusText(INTERNAL_SERVER_ERROR));
-  // eslint-disable-next-line
-  res.status(INTERNAL_SERVER_ERROR).send(getStatusText(INTERNAL_SERVER_ERROR));
-  next();
-});
+app.use((req, res, next) => next(createError(NOT_FOUND)));
+
+app.use(errorHandler);
 
 module.exports = app;

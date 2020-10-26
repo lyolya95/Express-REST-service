@@ -1,12 +1,12 @@
-const boardsRepo = require('./board.memory.repository');
+const boardsRepo = require('./board.DB.repository');
 
 const getAll = () => boardsRepo.getAll();
 
 const getById = id => boardsRepo.getById(id);
 
-const create = user => boardsRepo.create(user);
+const create = board => boardsRepo.create(board);
 
-const update = (id, user) => boardsRepo.update(id, user);
+const update = (id, board) => boardsRepo.update(id, board);
 
 const deleted = id => boardsRepo.deleted(id);
 

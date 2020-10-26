@@ -1,64 +1,31 @@
 const router = require('express').Router();
-const User = require('./user.model');
 const usersService = require('./user.service');
+const User = require('./user.model');
+const { OK, getStatusText } = require('http-status-codes');
 
 router.route('/').get(async (req, res) => {
-  try {
-    const users = await usersService.getAll();
-    res.json(users.map(User.toResponse));
-  } catch (err) {
-    res.status(404).send('Users not found');
-  }
+  const users = await usersService.getAll();
+  res.json(users.map(User.toResponse));
 });
 
 router.route('/:id').get(async (req, res) => {
-  try {
-    const user = await usersService.getById(req.params.id);
-    res.json(User.toResponse(user));
-  } catch (err) {
-    res.status(404).send('User not found');
-  }
+  const user = await usersService.getById(req.params.id);
+  res.json(User.toResponse(user));
 });
 
 router.route('/').post(async (req, res) => {
-  try {
-    const user = await usersService.create(
-      new User({
-        name: req.body.name,
-        login: req.body.login,
-        password: req.body.password
-      })
-    );
-    res.json(User.toResponse(user));
-  } catch (err) {
-    res.status(404).send('User not found');
-  }
+  const user = await usersService.create(req.body);
+  res.json(User.toResponse(user));
 });
 
 router.route('/:id').put(async (req, res) => {
-  try {
-    const user = await usersService.update(
-      req.params.id,
-      new User({
-        id: req.params.id,
-        name: req.body.name,
-        login: req.body.login,
-        password: req.body.password
-      })
-    );
-    res.json(User.toResponse(user));
-  } catch (err) {
-    res.status(404).send('User not found');
-  }
+  const user = await usersService.update(req.params.id, req.body);
+  res.json(User.toResponse(user));
 });
 
 router.route('/:id').delete(async (req, res) => {
-  try {
-    await usersService.deleted(req.params.id);
-    res.status(200).send('OK');
-  } catch (err) {
-    res.status(404).send('User not found');
-  }
+  await usersService.deleted(req.params.id);
+  res.status(OK).send(getStatusText(OK));
 });
 
 module.exports = router;
