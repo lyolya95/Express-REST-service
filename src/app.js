@@ -27,6 +27,8 @@ process.on('uncaughtException', error => {
 
 process.on('unhandledRejection', reason => {
   winston.error(`unhandled rejection detected: ${reason.message}`);
+  // eslint-disable-next-line no-process-exit
+  // process.exit(1);
 });
 
 morgan.token('body', res => {

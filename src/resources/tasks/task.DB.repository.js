@@ -2,25 +2,18 @@ const Task = require('./task.model');
 const { NOT_FOUND_ERROR } = require('../../errors/appErrors');
 const ENTITY_NAME = 'task';
 
-const getAll = async boardId => {
-  const tasks = await Task.find({ boardId });
-
-  if (!tasks[0]) {
-    throw new NOT_FOUND_ERROR(ENTITY_NAME, { boardId });
-  }
-  return tasks;
-};
+const getAll = async boardId => await Task.find({ boardId });
 
 const getById = async id => {
-  const task = await Task.findById(id);
+  const task = await Task.findById({ _id: id });
 
   if (!task) {
-    throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
+    throw new NOT_FOUND_ERROR(ENTITY_NAME, { _id: id });
   }
   return task;
 };
 
-const create = async task => Task.create(task);
+const create = async task => await Task.create(task);
 
 const update = async (boardId, id, task) => {
   const updateTask = await Task.findOneAndUpdate({ boardId, _id: id }, task);
@@ -39,7 +32,7 @@ const deleted = async (boardId, id) => {
     throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
   }
 
-  return task;
+  return true;
 };
 
 module.exports = { getAll, getById, create, update, deleted };

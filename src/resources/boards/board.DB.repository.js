@@ -35,7 +35,7 @@ const deleted = async id => {
   }
 
   await Task.deleteMany({ boardId: id });
-  return board;
+  return true;
 };
 
 module.exports = { getAll, getById, create, update, deleted };
