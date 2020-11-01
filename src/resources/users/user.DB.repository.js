@@ -1,6 +1,8 @@
 const User = require('./user.model');
+const { hashPassword } = require('../../utils/hashHelper/hashHelper');
 const Task = require('../tasks/task.model');
 const { NOT_FOUND_ERROR } = require('../../errors/appErrors');
+
 const ENTITY_NAME = 'user';
 
 const getAll = async () => User.find({});
@@ -14,10 +16,24 @@ const getById = async id => {
   return user;
 };
 
-const create = async user => User.create(user);
+const create = async user => {
+  const { name, login, password } = user;
+  const hash = await hashPassword(password);
+
+  return await User.create(user, {
+    name,
+    login,
+    password: hash
+  });
+};
 
 const update = async (id, user) => {
-  const updateUser = await User.updateOne({ _id: id }, user);
+  const { name, login, password } = user;
+  const hash = await hashPassword(password);
+  const updateUser = await User.updateOne(
+    { _id: id },
+    { name, login, password: hash }
+  );
 
   if (!updateUser) {
     throw new NOT_FOUND_ERROR(ENTITY_NAME, { id });
@@ -36,4 +52,6 @@ const deleted = async id => {
   return true;
 };
 
-module.exports = { getAll, getById, create, update, deleted };
+const getByUserLogin = async login => User.findOne({ login });
+
+module.exports = { getAll, getById, create, update, deleted, getByUserLogin };

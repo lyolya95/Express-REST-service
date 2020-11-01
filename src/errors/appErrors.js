@@ -1,4 +1,4 @@
-const { NOT_FOUND } = require('http-status-codes');
+const { NOT_FOUND, Forbidden } = require('http-status-codes');
 
 const reqWrapper = callback => async (req, res, next) => {
   try {
@@ -16,4 +16,15 @@ class NotFoundError extends Error {
   }
 }
 
-module.exports = { NOT_FOUND_ERROR: NotFoundError, reqWrapper };
+class ForbiddenError extends Error {
+  constructor(message) {
+    super(message);
+    this.status = Forbidden;
+  }
+}
+
+module.exports = {
+  NOT_FOUND_ERROR: NotFoundError,
+  reqWrapper,
+  FORBIDDEN_ERROR: ForbiddenError
+};
