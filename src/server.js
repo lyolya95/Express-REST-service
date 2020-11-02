@@ -22,4 +22,4 @@ db.once('open', () => {
     winston.info(`App is running on http://localhost:${PORT}`)
   );
 });
-db.dropDatabase();
+// db.dropDatabase();

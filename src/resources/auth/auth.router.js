@@ -12,7 +12,7 @@ router.route('/').post(
     if (!token) {
       throw new Forbidden();
     } else {
-      res.status(OK).json(token);
+      res.status(OK).json({ token });
     }
   })
 );
