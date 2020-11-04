@@ -6,12 +6,13 @@ module.exports = (req, res, next) => {
   const authHeader = req.header('Authorization');
 
   if (authHeader !== undefined) {
-    const tokenString = req.header('Authorization');
-
-    const [type, token] = tokenString.split(' ');
-    if (type === 'Bearer' && jsonWebToken.verify(token, JWT_SECRET_KEY)) {
-      return next();
-    }
+    const [token] = authHeader.split(' ')[1];
+    jsonWebToken.verify(token, JWT_SECRET_KEY, err => {
+      if (err) {
+        return next(err);
+      }
+    });
+    return next();
   }
-  throw new Unauthorized();
+  next(new Unauthorized());
 };

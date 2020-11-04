@@ -31,7 +31,7 @@ const update = async (id, user) => {
   const { name, login, password } = user;
   const hash = await hashPassword(password);
   const updateUser = await User.updateOne(
-    { _id: id },
+    { id },
     { name, login, password: hash }
   );
 

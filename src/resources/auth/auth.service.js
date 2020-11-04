@@ -6,9 +6,6 @@ const { checkPassword } = require('../../utils/hashHelper/hashHelper');
 const signToken = async (login, password) => {
   const user = await usersRepo.getByUserLogin(login);
 
-  if (!user) {
-    return null;
-  }
   const { password: hashedPassword } = user;
 
   const comparisonRes = checkPassword(password, hashedPassword);
@@ -20,7 +17,6 @@ const signToken = async (login, password) => {
     });
     return token;
   }
-  return;
 };
 
 module.exports = {
