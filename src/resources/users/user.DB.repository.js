@@ -20,7 +20,7 @@ const create = async user => {
   const { name, login, password } = user;
   const hash = await hashPassword(password);
 
-  return await User.create(user, {
+  return await User.create({
     name,
     login,
     password: hash
@@ -31,7 +31,7 @@ const update = async (id, user) => {
   const { name, login, password } = user;
   const hash = await hashPassword(password);
   const updateUser = await User.updateOne(
-    { id },
+    { _id: id },
     { name, login, password: hash }
   );
 
