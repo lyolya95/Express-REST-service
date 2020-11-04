@@ -16,7 +16,7 @@ const signToken = async (login, password) => {
   if (comparisonRes) {
     const { id } = user;
     const token = jsonWebToken.sign({ id, login }, JWT_SECRET_KEY, {
-      expiresIn: '10m'
+      expiresIn: '1h'
     });
     return token;
   }
