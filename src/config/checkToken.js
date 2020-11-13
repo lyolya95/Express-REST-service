@@ -1,7 +1,6 @@
 const jsonWebToken = require('jsonwebtoken');
 const { JWT_SECRET_KEY } = require('../common/config');
 const { Unauthorized } = require('http-errors');
-const { UNAUTHORIZED } = require('http-status-codes');
 
 module.exports = (req, res, next) => {
   const authHeader = req.header('Authorization');
@@ -12,8 +11,7 @@ module.exports = (req, res, next) => {
       try {
         jsonWebToken.verify(token, JWT_SECRET_KEY);
       } catch (err) {
-        res.status(UNAUTHORIZED).send(`${err.name}: ${err.message}`);
-        return;
+        throw new Unauthorized();
       }
       return next();
     }

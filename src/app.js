@@ -10,7 +10,7 @@ const boardRouter = require('./resources/boards/board.router');
 const taskRouter = require('./resources/tasks/task.router');
 const authRouter = require('./resources/auth/auth.router');
 const morgan = require('morgan');
-const winston = require('./config/winston');
+const logger = require('./config/logger');
 const errorHandler = require('./errors/errorHandler');
 const checkToken = require('./config/checkToken');
 
@@ -22,13 +22,13 @@ app.use(express.json());
 app.use('/doc', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 process.on('uncaughtException', error => {
-  winston.error(`captured error: ${error.message}`);
+  logger.error(`captured error: ${error.message}`);
   // eslint-disable-next-line no-process-exit
   process.exit(1);
 });
 
 process.on('unhandledRejection', reason => {
-  winston.error(`unhandled rejection detected: ${reason.message}`);
+  logger.error(`unhandled rejection detected: ${reason.message}`);
   // eslint-disable-next-line no-process-exit
   // process.exit(1);
 });
@@ -42,14 +42,14 @@ morgan.token('body', res => {
 
 app.use(
   morgan('METHOD: :method URL: :url :body :response-time', {
-    stream: winston.stream
+    stream: logger.stream
   })
 );
 
 app.use('/', (req, res, next) => {
   if (req.originalUrl === '/') {
     res.send('Service is running!');
-    winston.info('Required empty');
+    logger.info('Required empty');
     return;
   }
   next();

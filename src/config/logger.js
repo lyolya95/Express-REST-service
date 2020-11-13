@@ -35,6 +35,7 @@ const logger = winston.createLogger({
   ],
   format: winston.format.combine(
     (winston.format.simple(),
+    winston.format.colorize(),
     winston.format.printf(info => `${info.level}: ${info.message}`))
   ),
   exitOnError: false
